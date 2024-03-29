@@ -1,0 +1,8 @@
+name: ChallengePlugin
+version: '${project.version}'
+main: org.cookeddiamond.challengeplugin.ChallengePlugin
+api-version: '1.20'
+commands:
+  set_random:
+    description: Sets the seed for the random item drops
+    usage: /set_random {number}
