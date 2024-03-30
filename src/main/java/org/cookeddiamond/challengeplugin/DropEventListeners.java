@@ -1,5 +1,6 @@
 package org.cookeddiamond.challengeplugin;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
@@ -51,9 +52,14 @@ public class DropEventListeners implements Listener {
     }
 
     private Material getRandomMaterial(Material original) {
+
+
         Material[] materials = Material.values();
-        Random random = new Random(original.hashCode() + itemIDOffset);
-        Material randomMaterial = materials[random.nextInt(materials.length)];
+        Random randomFirst = new Random(original.ordinal() + itemIDOffset);
+        Random random = new Random(randomFirst.nextLong());
+        int nextRandom = random.nextInt(materials.length);
+        Bukkit.getLogger().info("Material:" + original + " offset:" + itemIDOffset + " ordinal:" + original.ordinal() + " random result" + nextRandom);
+        Material randomMaterial = materials[nextRandom];
         if (!randomMaterial.isAir()
             && randomMaterial.isItem()) {
             return randomMaterial;
